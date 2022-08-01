@@ -9,19 +9,14 @@
         let answer = 0;
 
         for (let x of arr) {
-          if (
-            parseInt(x.toString().slice(-1)) ===
-            parseInt(day.toString().slice(-1))
-          ) {
-            answer += 1;
-          }
+          if (x % 10 === day % 10) answer += 1;
         }
 
         return answer;
       }
 
       arr = [25, 23, 11, 47, 53, 17, 33];
-      console.log(solution(7, arr));
+      console.log(solution(21, arr));
     </script>
   </body>
 </html>
