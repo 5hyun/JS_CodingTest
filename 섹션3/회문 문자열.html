@@ -9,13 +9,9 @@
         let answer = "YES";
 
         s = s.toLowerCase();
+        tmp = s.split("").reverse().join("");
 
-        for (let i = 0; i < Math.floor(s.length / 2); i++) {
-          if (s[i] !== s[s.length - i - 1]) {
-            answer = "NO";
-            break;
-          }
-        }
+        if (tmp !== s) answer = "NO";
 
         return answer;
       }
