@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = "YES";
+
+        s = s.toLowerCase();
+        s = s.replace(/,|:|;/g, "");
+        let len = s.length;
+        let tmp = "";
+
+        if (len % 2 === 0) {
+          tmp = s.slice(Math.floor(len / 2), len);
+          s = s.slice(0, Math.floor(len / 2));
+        } else {
+          tmp = s.slice(Math.floor(len / 2) + 1, len);
+          s = s.slice(0, Math.floor(len / 2));
+        }
+
+        tmp = Array.from(tmp);
+        tmp = tmp.reverse().join("").trim();
+
+        if (s !== tmp) {
+          answer = "NO";
+        }
+
+        return answer;
+      }
+
+      let str = "found7, time: study; Yduts; emit, 7Dnuof";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
