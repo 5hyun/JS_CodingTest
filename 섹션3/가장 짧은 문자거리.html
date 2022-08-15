@@ -1,40 +1,33 @@
 <html>
-<head>
+  <head>
     <meta charset="UTF-8" />
     <title>출력결과</title>
-</head>
-<body>
-<script>
-    function solution(s, t) {
-        let answer = Array.from(
-            { length: s.length },
-            () => Number.MAX_SAFE_INTEGER
-        );
+  </head>
+  <body>
+    <script>
+      function solution(s, t) {
+        let answer = [];
+        let p = 1000;
 
-        let indexT = [];
+        for (let x of s) {
+          if (x === t) p = 0;
+          else p++;
 
-        let i = 0;
-        while (i < s.length) {
-            let tmp = s.indexOf(t, i);
-            indexT.push(tmp);
-
-            i = tmp + 1;
+          answer.push(p);
         }
 
-        for (let x of indexT) {
-            for (let i = 0; i < s.length; i++) {
-                if (i === x) answer[i] = 0;
-                else {
-                    answer[i] = Math.min(answer[i], Math.abs(x - i));
-                }
-            }
-        }
+        p = 1000;
+        for (let i = s.length - 1; i > -1; i--) {
+          if (s[i] === t) p = 0;
+          else answer[i] = Math.min(answer[i], p);
 
+          p++;
+        }
         return answer;
-    }
+      }
 
-    let str = "teachermode";
-    console.log(solution(str, "e"));
-</script>
-</body>
+      let str = "teachermode";
+      console.log(solution(str, "e"));
+    </script>
+  </body>
 </html>
