@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = "";
+
+        let count = 0;
+        let now = "";
+
+        for (let i = 0; i < s.length; i++) {
+          if (count === 0) {
+            answer += s[i];
+            now = s[i];
+            count++;
+          } else {
+            if (now === s[i]) {
+              count++;
+            } else {
+              if (count > 1) answer += count;
+
+              now = s[i];
+              count = 1;
+              answer += s[i];
+            }
+          }
+        }
+
+        if (count > 1) answer += count;
+
+        return answer;
+      }
+
+      let str = "KKHSSSSSSSE";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
