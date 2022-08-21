@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, k, card) {
+        let answer;
+
+        let ary = [];
+        for (let i = 0; i < n - 2; i++) {
+          for (let j = i + 1; j < n - 1; j++) {
+            for (let k = j + 1; k < n; k++) {
+              let sum = card[i] + card[j] + card[k];
+
+              if (ary.indexOf(sum) === -1) ary.push(sum);
+            }
+          }
+        }
+
+        ary.sort((a, b) => b - a);
+        answer = ary[k - 1];
+
+        return answer;
+      }
+
+      let arr = [13, 15, 34, 23, 45, 65, 33, 11, 26, 42];
+      console.log(solution(10, 3, arr));
+    </script>
+  </body>
+</html>
