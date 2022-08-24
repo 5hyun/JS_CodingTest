@@ -9,19 +9,14 @@
         let answer = 0,
           lt = 0,
           sum = 0;
-        let n = arr.length;
 
-        for (let i = 0; i < n; i++) {
-          let sum = arr[i];
-          for (let j = i + 1; j < n; j++) {
-            let t = sum + arr[j];
-            if (sum === m || t === m) {
-              answer++;
-              break;
-            }
-            if (t > m) break;
+        for (let rt = 0; rt < arr.length; rt++) {
+          sum += arr[rt];
 
-            sum = t;
+          if (sum === m) answer++;
+          while (sum >= m) {
+            sum -= arr[lt++];
+            if (sum === m) answer++;
           }
         }
 
