@@ -8,17 +8,21 @@
       function solution(s) {
         let answer;
 
-        let obj = {};
+        let hash = new Map();
 
-        for (let i = 0; i < s.length; i++) {
-          if (s[i] in obj) {
-            obj[s[i]] += 1;
-          } else {
-            obj[s[i]] = 1;
-          }
+        for (let x of s) {
+          if (hash.has(x)) hash.set(x, hash.get(x) + 1);
+          else hash.set(x, 1);
         }
 
-        answer = Object.entries(obj).sort((a, b) => b[1] - a[1])[0][0];
+        let max = Number.MIN_SAFE_INTEGER;
+
+        for (let [key, value] of hash) {
+          if (max < value) {
+            max = value;
+            answer = key;
+          }
+        }
 
         return answer;
       }
