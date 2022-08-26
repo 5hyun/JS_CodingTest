@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer;
+
+        let obj = {};
+
+        for (let i = 0; i < s.length; i++) {
+          if (s[i] in obj) {
+            obj[s[i]] += 1;
+          } else {
+            obj[s[i]] = 1;
+          }
+        }
+
+        answer = Object.entries(obj).sort((a, b) => b[1] - a[1])[0][0];
+
+        return answer;
+      }
+
+      let str = "BACBACCACCBDEDE";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
