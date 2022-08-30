@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = "YES";
+
+        let ary = [];
+
+        for (let x of s) {
+          if (x === "(") ary.push(x);
+          else if (x === ")") {
+            if (ary.length === 0) {
+              answer = "NO";
+              break;
+            } else ary.pop();
+          }
+        }
+
+        if (ary.length > 0) answer = "NO";
+
+        return answer;
+      }
+
+      let a = "(()(()))(()";
+      console.log(solution(a));
+    </script>
+  </body>
+</html>
