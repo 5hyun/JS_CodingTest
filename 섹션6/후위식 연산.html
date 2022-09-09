@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer;
+
+        let ary = [];
+
+        for (let x of s) {
+          if (x === "+" || x === "-" || x === "*" || x === "/") {
+            let a = ary.pop();
+            let b = ary.pop();
+
+            if (x === "+") ary.push(b + a);
+            else if (x === "-") ary.push(b - a);
+            else if (x === "*") ary.push(b * a);
+            else ary.push(b / a);
+          } else {
+            ary.push(parseInt(x));
+          }
+        }
+
+        answer = ary[0];
+
+        return answer;
+      }
+
+      let str = "352+*9-";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
