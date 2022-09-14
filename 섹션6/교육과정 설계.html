@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(need, plan) {
+        let answer = "YES";
+
+        need = Array.from(need);
+
+        for (let x of plan) {
+          if (need.includes(x)) {
+            if (x === need[0]) {
+              need.shift();
+            } else {
+              answer = "NO";
+              break;
+            }
+          }
+        }
+
+        return answer;
+      }
+
+      let a = "CAB";
+      let b = "CADBGE";
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
