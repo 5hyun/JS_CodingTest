@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = arr;
+
+        let min;
+
+        for (let i = 0; i < answer.length; i++) {
+          min = i;
+          for (let j = i + 1; j < answer.length; j++) {
+            if (answer[min] > answer[j]) min = j;
+          }
+          [answer[i], answer[min]] = [answer[min], answer[i]];
+        }
+
+        return answer;
+      }
+
+      let arr = [13, 5, 11, 7, 23, 15];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
