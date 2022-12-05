@@ -13,16 +13,12 @@
           for (let i = 0; i < size; i++) if (answer[i] === x) pos = i;
 
           if (pos === -1) {
-            for (let i = size - 1; i >= 1; i--) {
-              answer[i] = answer[i - 1];
-            }
+            answer.unshift(x);
+            if (answer.length > size) answer.pop();
           } else {
-            for (let i = pos; i >= 1; i--) {
-              answer[i] = answer[i - 1];
-            }
+            answer.splice(pos);
+            answer.unshift(x);
           }
-
-          answer[0] = x;
         });
 
         return answer;
