@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // function solution(times) {
+      //   let answer = 0;
+      //   let ary = times.slice();
+      //
+      //   ary.sort((a, b) => a[0] - b[0]);
+      //
+      //   let count = 0;
+      //   for (let i = 0; i < times.length - 1; i++) {
+      //     let max = ary[i][1];
+      //     for (let j = i; j < times.length; j++) {
+      //       if (ary[j][0] < max) {
+      //         count++;
+      //
+      //         if (count > answer) answer = count;
+      //       } else {
+      //         count = 0;
+      //         break;
+      //       }
+      //     }
+      //   }
+      //
+      //   return answer;
+      // }
+
+      function solution(times) {
+        let answer = 0;
+        let timeLine = [];
+        let count = 0;
+
+        times.forEach((item) => {
+          timeLine.push([item[0], "s"]);
+          timeLine.push([item[1], "e"]);
+        });
+
+        timeLine.sort((a, b) => {
+          if (a[0] === b[0]) {
+            return a[1].charCodeAt() - b[1].charCodeAt();
+          }
+          return a[0] - b[0];
+        });
+
+        timeLine.forEach((item) => {
+          if (item[1] === "s") {
+            count++;
+            answer = Math.max(answer, count);
+          } else {
+            count--;
+          }
+        });
+
+        return answer;
+      }
+
+      let arr = [
+        [14, 18],
+        [12, 15],
+        [15, 20],
+        [20, 30],
+        [5, 14],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
