@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        let answer = "";
+
+        function DFS(L) {
+          if (L === 1) {
+            answer = "1" + answer;
+            return;
+          }
+
+          answer = (L % 2) + answer;
+          DFS(Math.floor(L / 2));
+        }
+
+        DFS(n);
+
+        return answer;
+      }
+
+      console.log(solution(100));
+    </script>
+  </body>
+</html>
