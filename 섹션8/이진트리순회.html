@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        let answer = "";
+
+        //전위 순회
+        function DFS(L) {
+          if (L > 7) return;
+
+          answer += L + " ";
+
+          DFS(L * 2);
+          DFS(L * 2 + 1);
+        }
+
+        //  후위 순회
+        // function DFS(L) {
+        //   if (L > 7) return;
+        //
+        //   DFS(L * 2);
+        //   DFS(L * 2 + 1);
+        //
+        //   answer += L + " ";
+        // }
+
+        DFS(n);
+        return answer;
+      }
+
+      console.log(solution(1));
+    </script>
+  </body>
+</html>
