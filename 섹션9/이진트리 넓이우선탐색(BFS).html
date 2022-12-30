@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution() {
+        let answer = "";
+        let queue = [];
+        queue.push(1);
+
+        while (queue.length) {
+          let n = queue.shift();
+          answer += n + " ";
+
+          for (let nv of [n * 2, n * 2 + 1]) {
+            if (nv > 7) continue;
+            queue.push(nv);
+          }
+        }
+
+        return answer;
+      }
+
+      console.log(solution());
+    </script>
+  </body>
+</html>
