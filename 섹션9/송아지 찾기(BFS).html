@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s, e) {
+        let answer = 0;
+        let dx = [1, -1, 5];
+        let queue = [[0, s]];
+
+        while (true) {
+          let n = queue.shift();
+
+          if (n[1] === e) {
+            answer = n[0];
+            break;
+          }
+
+          for (let v of dx) {
+            let temp = n.slice();
+
+            temp[0]++;
+            temp[1] += v;
+            queue.push(temp);
+          }
+        }
+
+        return answer;
+      }
+
+      console.log(solution(8, 3));
+    </script>
+  </body>
+</html>
