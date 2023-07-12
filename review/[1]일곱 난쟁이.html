@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function sum(arr) {
+        if (arr.length !== 0) return arr.reduce((v, s) => v + s);
+      }
+
+      function solution(arr) {
+        let answer;
+
+        function dfs(index, count, list) {
+          if (count === 7 && sum(list) === 100) {
+            answer = list;
+            return;
+          }
+          if (index >= arr.length || count > 7 || sum(list) > 100) return;
+
+          dfs(index + 1, count + 1, [...list, arr[index]]);
+          dfs(index + 1, count, [...list]);
+        }
+
+        dfs(0, 0, []);
+
+        return answer;
+      }
+
+      let arr = [20, 7, 23, 19, 10, 15, 25, 8, 13];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
