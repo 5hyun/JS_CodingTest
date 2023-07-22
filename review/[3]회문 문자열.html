@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let n = s.length;
+        let word = s.toLowerCase().split("");
+
+        if (n % 2 === 1) {
+          word.splice(Math.floor(n / 2), 1);
+          n--;
+        }
+
+        let left = word.slice(0, n / 2);
+        let right = word.slice(n / 2, n).reverse();
+
+        let flag = true;
+        for (let i = 0; i < n / 2; i++) {
+          if (left[i] !== right[i]) {
+            flag = false;
+            break;
+          }
+        }
+
+        return flag ? "YES" : "No";
+      }
+
+      let str = "goooG";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
