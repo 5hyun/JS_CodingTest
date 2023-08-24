@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = "";
+
+        let now = "";
+        let count = 0;
+        for (let x of s) {
+          if (count === 0) {
+            answer += x;
+            now = x;
+            count++;
+          } else if (now === x) {
+            count++;
+          } else {
+            answer += count;
+            count = 0;
+            answer += x;
+            now = x;
+          }
+        }
+
+        count > 0 && (answer += count);
+
+        return answer;
+      }
+
+      let str = "KKHSSSSSSSE";
+      // let str = "KKHSSSSSSSS";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
