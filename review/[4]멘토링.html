@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(test) {
+        let answer = 0;
+        // 총 몇 명인지
+        let n = test[0].length;
+        // 테스트 횟수
+        let m = test.length;
+
+         for (let i = 1; i < n+1; i++){
+           for (let j = 1; j < n+1; j++){
+             let cnt = 0;
+             for (let k = 0; k < m; k++){
+               let i_rank = j_rank = 0;
+               for (let s = 0; s < n; s++){
+                 if (test[k][s] === i) i_rank = s;
+                 if (test[k][s] === j) j_rank = s;
+               }
+               if (i_rank < j_rank) cnt++;
+             }
+             if (cnt === m) answer++;
+           }
+         }
+
+        return answer;
+      }
+
+      let arr = [
+        [3, 4, 1, 2],
+        [4, 3, 2, 1],
+        [3, 1, 4, 2],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
