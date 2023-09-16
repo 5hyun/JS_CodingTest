@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer;
+        const vote = new Map();
+
+        for (let x of s) {
+          vote.set(x, (vote.get(x) ?? 0) + 1);
+        }
+
+        const result = [...vote];
+        let max = 0;
+        for (let i = 0; i < vote.size; i++) {
+          if (max < result[i][1]) {
+            max = result[i][1];
+            answer = result[i][0];
+          }
+        }
+
+        return answer;
+      }
+
+      let str = "BACBACCACCBDEDE";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
