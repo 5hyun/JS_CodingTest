@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function checkAnagram(word1, word2) {
+        if (word1.split("").sort().join("") === word2.split("").sort().join(""))
+          return true;
+        else return false;
+      }
+      function solution(s, t) {
+        let answer = 0;
+        let lt = 0,
+          n = a.length;
+
+        while (lt < n) {
+          let temp = "";
+          for (let i = lt; i < lt + t.length; i++) {
+            temp += s[i];
+          }
+
+          if (checkAnagram(temp, t)) {
+            answer++;
+          }
+          lt++;
+        }
+
+        return answer;
+      }
+
+      let a = "bacaAacba";
+      let b = "abc";
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
