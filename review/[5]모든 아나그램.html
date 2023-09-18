@@ -5,25 +5,41 @@
   </head>
   <body>
     <script>
-      function checkAnagram(word1, word2) {
-        if (word1.split("").sort().join("") === word2.split("").sort().join(""))
-          return true;
-        else return false;
+      function compareMap(a, b) {
+        if (a.size !== b.size) return false;
+
+        for (let [key, value] of a) {
+          if (!b.has(key) || b.get(key) !== value) return false;
+        }
+
+        return true;
       }
       function solution(s, t) {
         let answer = 0;
-        let lt = 0,
-          n = a.length;
+        let tHash = new Map();
+        let sHash = new Map();
+        let len = t.length - 1;
 
-        while (lt < n) {
-          let temp = "";
-          for (let i = lt; i < lt + t.length; i++) {
-            temp += s[i];
-          }
+        for (let i = 0; i < t.length; i++) {
+          if (tHash.has(t[i])) tHash.set(t[i], tHash.get(t[i]) + 1);
+          else tHash.set(t[i], 1);
+        }
 
-          if (checkAnagram(temp, t)) {
-            answer++;
-          }
+        for (let i = 0; i < t.length - 1; i++) {
+          if (sHash.has(s[i])) sHash.set(s[i], sHash.get(s[i]) + 1);
+          else sHash.set(s[i], 1);
+        }
+
+        let lt = 0;
+        for (let rt = len; rt < s.length; rt++) {
+          sHash.has(s[rt])
+            ? sHash.set(s[rt], sHash.get(s[rt]) + 1)
+            : sHash.set(s[rt], 1);
+
+          if (compareMap(sHash, tHash)) answer++;
+
+          sHash.set(s[lt], sHash.get(s[lt]) - 1);
+          if (sHash.get(s[lt]) === 0) sHash.delete(s[lt]);
           lt++;
         }
 
