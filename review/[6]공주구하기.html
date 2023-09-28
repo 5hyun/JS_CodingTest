@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, k) {
+        let answer;
+        let cnt = k - 1;
+        let i = 1;
+        let boys = Array.from({ length: n }, () => i++);
+
+        while (boys.length !== 1) {
+          boys.splice(cnt, 1);
+
+          cnt += k - 1;
+          cnt >= boys.length && (cnt %= boys.length);
+        }
+
+        answer = boys[0];
+
+        return answer;
+      }
+
+      console.log(solution(8, 3));
+    </script>
+  </body>
+</html>
