@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        let answer = [];
+        let check = Array.from({ length: n + 1 }, () => 0);
+
+        function dfs(num) {
+          if (num === n + 1) {
+            let temp = "";
+
+            for (let i = 1; i <= n; i++) {
+              if (check[i] === 1) temp += i + " ";
+            }
+
+            if (temp) answer.push(temp.trim())
+          } else {
+            check[num] = 0;
+            dfs(num + 1);
+            check[num] = 1;
+            dfs(num + 1);
+          }
+        }
+
+        dfs(1);
+        answer.reverse()
+
+        return answer;
+      }
+
+      console.log(solution(3));
+    </script>
+  </body>
+</html>
