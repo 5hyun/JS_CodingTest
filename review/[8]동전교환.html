@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(m, arr) {
+        let answer = Number.MAX_SAFE_INTEGER;
+
+        function DFS(sum, cnt) {
+          // 거스름돈보다 sum이 크면 컷
+          if (sum > m) return;
+          // 현재까지 가장 적은 개수보다 크면 컷
+          if (cnt >= answer) return;
+
+          if (sum === m) answer = Math.min(answer, cnt);
+          else {
+            for (let x of arr) {
+              DFS(sum + x, cnt + 1);
+            }
+          }
+        }
+
+        DFS(0, 0);
+
+        return answer;
+      }
+
+      let arr = [1, 2, 5];
+      console.log(solution(15, arr));
+    </script>
+  </body>
+</html>
