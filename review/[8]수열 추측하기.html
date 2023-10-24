@@ -1,0 +1,52 @@
+<html>
+</head>
+<body>
+<script>
+    function solution(n, f){
+        let answer,flag = 0;
+        let dy = Array.from(Array(11),()=> Array(11).fill(0));
+        let ch = Array(n+1).fill(0);
+        let dc = Array.from(n).fill(0);
+        let ary = Array.from(n).fill(0);
+
+        function comb(n, r){
+            if (dy[n][r] !== 0){
+                return dy[n][r]
+            }
+            if (n === r || r === 0){
+                return 1;
+            }
+            return dy[n][r] = comb(n-1, r)+ comb(n-1, r-1);
+        }
+
+        for(let i = 0; i < n; i++){
+            dc[i] = comb(n-1,i);
+        }
+
+        function DFS(sum, level){
+            if (flag) return;
+
+            if (level === n && sum === f){
+                flag = 1;
+                answer = [...ary];
+            }else {
+                for (let i = 1; i <= n; i++){
+                    if (ch[i] === 0){
+                        ch[i] = 1;
+                        ary[level] = i;
+                        DFS(sum + ary[level] * dc[level], level+1);
+                        ch[i] = 0;
+                    }
+                }
+            }
+        }
+
+        DFS(0,0)
+
+        return answer;
+    }
+
+    console.log(solution(4, 16));
+</script>
+</body>
+</html>
