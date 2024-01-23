@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      const compare = (s, t) => {
+        if (s.size !== t.size) return false;
+
+        let flag = true;
+
+        for (let [key, value] of s) {
+          if (!t.has(key) || t.get(key) !== value) {
+            flag = false;
+          }
+        }
+
+        return flag;
+      };
+      function solution(s, t) {
+        let answer = 0;
+        let sT = new Map();
+        let tT = new Map();
+
+        s.slice(0, t.length)
+          .split("")
+          .forEach((word) => {
+            if (sT.has(word)) {
+              sT.set(word, sT.get(word) + 1);
+            } else {
+              sT.set(word, 1);
+            }
+          });
+
+        t.split("").forEach((word) => {
+          if (tT.has(word)) {
+            tT.set(word, tT.get(word) + 1);
+          } else {
+            tT.set(word, 1);
+          }
+        });
+
+        compare(sT, tT) && answer++;
+
+        for (let i = t.length; i <= s.length - t.length; i++) {
+          if (!sT.has(s[i])) {
+            sT.delete(s[i - t.length + 1]);
+            sT.set(s[i], 1);
+          }
+
+          if (compare(sT, tT)) {
+            answer++;
+          }
+        }
+
+        return answer;
+      }
+
+      let a = "bacaAacba";
+      let b = "abc";
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
